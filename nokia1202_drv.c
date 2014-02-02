@@ -3,12 +3,10 @@
  * Copyright (c) 2014 Eric Brundick <spirilis [at] linux dot com>
  */
 
-// needed for driverlib rom stuff
-#define TARGET_IS_BLIZZARD_RA1 1
+#include "hw_inc.h"
+#include "driverlib/gpio.h"
 
 #include <stdio.h>
-#include <stdint.h>
-#include <stdbool.h>
 #include <string.h>
 #include <unistd.h>
 #include "nokia1202_drv.h"
@@ -16,15 +14,6 @@
 #include "devoptab.h"
 #include "font_5x7.h"
 #include "ste2007.h"
-
-#include "inc/tm4c123gh6pm.h"
-#include "inc/hw_types.h"
-#include "inc/hw_memmap.h"
-#include "driverlib/sysctl.h"
-#include "driverlib/rom.h"
-#include "driverlib/rom_map.h"
-#include "driverlib/pin_map.h"
-#include "driverlib/gpio.h"
 
 /* Core Nokia 1202 framebuffer/terminal driver; relies on ste2007_* library for low-level I/O */
 #define NOKIA1202_FRAMEBUFFER_SIZE (NOKIA1202_COLUMNS * NOKIA1202_LINES)
