@@ -40,7 +40,7 @@ int main()
     setvbuf(stdout, mylcd_buf, _IOLBF, 256);
     ste2007_contrast(12);
 
-    printf("Totally cool %g!  New TM4C129 LaunchPad!\n", 6.8);
+    printf("Totally cool %g!  New TM4C129 dev kit!\n", 1.08);
 
     while(1) ;
 }
