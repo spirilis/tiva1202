@@ -26,6 +26,7 @@
 # Defines the part type that this project uses.
 #
 PART=TM4C123GH6PM
+#PART=TM4C1294NCPDT
 
 #
 # The base directory for TivaWare.
@@ -75,6 +76,7 @@ ${COMPILER}/${PROGNAME}.axf: ${COMPILER}/ste2007.o
 ${COMPILER}/${PROGNAME}.axf: ${COMPILER}/font_5x7.o
 ${COMPILER}/${PROGNAME}.axf: ${COMPILER}/devoptab.o
 ${COMPILER}/${PROGNAME}.axf: ${COMPILER}/${PROGNAME}.o
+#${COMPILER}/${PROGNAME}.axf: ${COMPILER}/example_tm4c1294ncpdt.o
 ${COMPILER}/${PROGNAME}.axf: ${COMPILER}/startup_${COMPILER}.o
 ${COMPILER}/${PROGNAME}.axf: ${PART}.ld
 SCATTERgcc_${PROGNAME}=${PART}.ld

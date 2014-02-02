@@ -1,10 +1,9 @@
 // needed for driverlib rom stuff
 #define TARGET_IS_BLIZZARD_RA1 1
 
-#include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include "inc/tm4c123gh6pm.h"
+#include "inc/|TIVACHIP_LC|.h"
 #include "inc/hw_types.h"
 #include "inc/hw_memmap.h"
 #include "driverlib/sysctl.h"
