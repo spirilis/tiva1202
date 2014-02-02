@@ -41,7 +41,8 @@ int main()
     // Need at least 250ms wait for Nokia LCD to be ready for commands after power-on.
     ROM_SysTickPeriodSet(80000*125);
     ROM_SysTickIntDisable();
-    HWREG(NVIC_ST_CURRENT_R) = 1;
+    //HWREG(NVIC_ST_CURRENT_R) = 1;  // Doesn't work on TM4C1294NCPDT (need to omit HWREG())
+    NVIC_ST_CURRENT_R = 1;
     ROM_SysTickEnable();
     while (ROM_SysTickValueGet() < 10000) ;
     while (ROM_SysTickValueGet() > 10000) ;

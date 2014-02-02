@@ -61,9 +61,9 @@ SECTIONS
         *(COMMON)
         _ebss = .;
     } > SRAM
-    _heap_bottom = .;
+    _heap_bottom = ALIGN(8);
     _heap_top = ORIGIN(SRAM) + LENGTH(SRAM) - _stack_size;
-    _stack_bottom = _heap_top;
+    _stack_bottom = ALIGN(8);
     _stack_top = ORIGIN(SRAM) + LENGTH(SRAM);
 
 }
