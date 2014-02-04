@@ -5,6 +5,7 @@
 #include "driverlib/gpio.h"
 #include "driverlib/ssi.h"
 
+#include <stdio.h>
 #include "nokia1202_drv.h"
 #include "ste2007.h"
 #include "font_5x7.h"
