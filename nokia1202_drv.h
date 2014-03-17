@@ -28,9 +28,16 @@
 #define NOKIA1202_TAB_SPACING 4
 
 // Backlight GPIO details (uses TivaWare GPIO API to configure & control)
-#define NOKIA1202_BACKLIGHT_GPIO_SYSCTL SYSCTL_PERIPH_GPIOA
-#define NOKIA1202_BACKLIGHT_GPIO_BASE GPIO_PORTA_BASE
-#define NOKIA1202_BACKLIGHT_GPIO_PIN GPIO_PIN_4
+// Tiva-C & Stellaris LaunchPad (TM4C123)
+#define NOKIA1202_BACKLIGHT_GPIO_SYSCTL SYSCTL_PERIPH_GPIOB
+#define NOKIA1202_BACKLIGHT_GPIO_BASE GPIO_PORTB_BASE
+#define NOKIA1202_BACKLIGHT_GPIO_PIN GPIO_PIN_2
+//
+// Tiva-C Connected Ethernet LaunchPad (TM4C129) - BoosterPack "A" footprint
+//#define NOKIA1202_BACKLIGHT_GPIO_SYSCTL SYSCTL_PERIPH_GPIOM
+//#define NOKIA1202_BACKLIGHT_GPIO_BASE GPIO_PORTM_BASE
+//#define NOKIA1202_BACKLIGHT_GPIO_PIN GPIO_PIN_3
+//
 // Comment this out to avoid the library having any control over backlight
 #define NOKIA1202_CONTROL_BACKLIGHT 1
 
@@ -39,10 +46,17 @@
 #define SPI_SSI_CR0 SSI2_CR0_R
 // ^ used to configure 9-bit SPI mode on-the-fly (and restore when done)
 
+
+// GPIO pin used for the Chip Select, including the SysCtlPeripheralEnable() value.
+// Tiva-C & Stellaris LaunchPad (TM4C123)
 #define SPI_CHIPSELECT_GPIO_SYSCTL SYSCTL_PERIPH_GPIOA
 #define SPI_CHIPSELECT_GPIO_BASE GPIO_PORTA_BASE
-#define SPI_CHIPSELECT_GPIO_PIN GPIO_PIN_5
-// ^ GPIO pin used for the Chip Select, including the SysCtlPeripheralEnable() value.
+#define SPI_CHIPSELECT_GPIO_PIN GPIO_PIN_4
+//
+// Tiva-C Connected Ethernet LaunchPad (TM4C129) - BoosterPack "A" footprint
+//#define SPI_CHIPSELECT_GPIO_SYSCTL SYSCTL_PERIPH_GPION
+//#define SPI_CHIPSELECT_GPIO_BASE GPIO_PORTN_BASE
+//#define SPI_CHIPSELECT_GPIO_PIN GPIO_PIN_2
 
 
 

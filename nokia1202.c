@@ -44,7 +44,7 @@ int main()
     char mylcd_buf[128];
     setvbuf(stdout, mylcd_buf, _IOLBF, 128);
     ste2007_contrast(12);
-    printf("Totally cool! %g\n", 1.055);
+    printf("Totally cool! %g\n", 1.059);
 
     while(1) ;
 }

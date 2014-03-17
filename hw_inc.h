@@ -1,5 +1,5 @@
 // needed for driverlib rom stuff
-#define TARGET_IS_BLIZZARD_RA1 1
+#define TARGET_IS_TM4C123_RA1 1
 
 #include <stdint.h>
 #include <stdbool.h>
