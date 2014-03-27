@@ -14,8 +14,31 @@ SECTIONS
     {
         _text = .;
         KEEP(*(.isr_vector))
-        *(.text*)
-        *(.rodata*)
+        *(.text .text* .gnu.linkonce.t.*)
+        *(.rodata .rodata* .gnu.linkonce.r.*)
+
+        /* C++ initializers et al */
+        . = ALIGN(4);
+        KEEP(*(.init))
+        . = ALIGN(4);
+        __preinit_array_start = .;
+        KEEP (*(SORT(.preinit_array*)))
+        KEEP (*(.preinit_array))
+        __preinit_array_end = .;
+        . = ALIGN(4);
+        __init_array_start = .;
+        KEEP (*(SORT(.init_array*)))
+        KEEP (*(.init_array))
+        __init_array_end = .
+        . = ALIGN(4);
+        KEEP(*(.fini))
+        . = ALIGN(4);
+        __fini_array_start = .
+        KEEP(*(.fini_array))
+        KEEP(*(SORT(.fini_array*)))
+        __fini_array_end = .;
+
+        . = ALIGN(4);
         _etext = .;
     } > FLASH
 
@@ -23,7 +46,8 @@ SECTIONS
     {
         _data = .;
         *(vtable)
-        *(.data*)
+        *(.data .data* .gnu.linkonce.d.*)
+        *(.fastcode)
         _edata = .;
     } > SRAM AT > FLASH
 
@@ -32,13 +56,14 @@ SECTIONS
     .ARM.exidx   : { *(.ARM.exidx* .gnu.linkonce.armexidx.*) } > FLASH
     __exidx_end = .;
 
-    .bss :
+    .bss (NOLOAD):
     {
         _bss = .;
         *(.bss*)
         *(COMMON)
         _ebss = .;
     } > SRAM
+
     _heap_bottom = ALIGN(8);
     _heap_top = ORIGIN(SRAM) + LENGTH(SRAM) - _stack_size;
     _stack_bottom = ALIGN(8);

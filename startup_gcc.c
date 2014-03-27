@@ -247,6 +247,11 @@ extern uint32_t _data;
 extern uint32_t _edata;
 extern uint32_t _bss;
 extern uint32_t _ebss;
+extern void (*__preinit_array_start[])(void);
+extern void (*__preinit_array_end[])(void);
+extern void (*__init_array_start[])(void);
+extern void (*__init_array_end[])(void);
+
 
 //*****************************************************************************
 //
@@ -261,7 +266,7 @@ extern uint32_t _ebss;
 void
 ResetISR(void)
 {
-    uint32_t *pui32Src, *pui32Dest;
+    uint32_t *pui32Src, *pui32Dest, i, cnt;
 
     //
     // Copy the data segment initializers from flash to SRAM.
@@ -298,6 +303,17 @@ ResetISR(void)
     HWREG(NVIC_CPAC) = ((HWREG(NVIC_CPAC) &
                          ~(NVIC_CPAC_CP10_M | NVIC_CPAC_CP11_M)) |
                         NVIC_CPAC_CP10_FULL | NVIC_CPAC_CP11_FULL);
+
+    //
+    // call any global c++ ctors
+    //
+    cnt = __preinit_array_end - __preinit_array_start;
+    for (i = 0; i < cnt; i++)
+        __preinit_array_start[i]();
+
+    cnt = __init_array_end - __init_array_start;
+    for (i = 0; i < cnt; i++)
+        __init_array_start[i]();
 
     //
     // Call the application's entry point.
